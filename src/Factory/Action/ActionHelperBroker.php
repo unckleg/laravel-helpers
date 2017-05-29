@@ -3,14 +3,17 @@
 /**
  * This file is part of the Laravel Helpers package.
  *
- * @license MIT License https://mit-license.org
  * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * @license MIT License https://mit-license.org
  *
  */
 namespace Unckleg\Helpers\Factory\Action;
 
 
-class Broker
+class ActionHelperBroker
 {
+    public static function getHelper($name)
+    {
 
+    }
 }

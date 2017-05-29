@@ -3,15 +3,13 @@
 /**
  * This file is part of the Laravel Helpers package.
  *
- * @license MIT License https://mit-license.org
  * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
- *
+ * @license MIT License https://mit-license.org
  */
 namespace Unckleg\Helpers\Factory\View;
 
 use View;
 use Illuminate\Support\Facades\Blade;
-use Unckleg\Helpers\Factory\View\Collection\Broker;
 
 class ViewResolver
 {
@@ -24,7 +22,7 @@ class ViewResolver
     /**
      * Method resolve used to register directives/helpers through app lifecycle.
      *
-     * @return mixed
+     * @return void
      */
     public static function resolve()
     {
@@ -33,6 +31,10 @@ class ViewResolver
 
     /**
      * Method make is used to register helper methods to as global blade directives.
+     * Scope resolution operator used between class and method name to prevent
+     * ambiguous problem with two same named directives.
+     *
+     * See Laravel\Framework #14264 PR for more details.
      *
      * @param  $helperFile
      * @return void
@@ -42,18 +44,22 @@ class ViewResolver
         $reflectedObject = $this->getReflectedObject($helperFile);
         foreach ($reflectedObject->getMethods() as $helperMethod) {
 
+            // Short class name
+            $classShortName = strtolower(
+                (new \ReflectionClass($helperMethod->class))->getShortName()
+            );
+
             // Register blade directive through whole application lifecycle
-            Blade::directive($helperMethod->getName(), function($expression)
-                use($helperMethod)
-            {
-                // Return stringified method calling
-                return $this->stringify($helperMethod, $expression);
-            });
+            Blade::directive(
+                $classShortName.'::'.$helperMethod->getName(),
+                function ($expression) use ($helperMethod) {
+                
+                    // Return stringified method calling
+                    return $this->stringify($helperMethod, $expression);
+                }
+            );
 
         }
-
-        // Registering getViewHelper broker as last directive
-        ((new Broker())->registerBrokerDirective());
 
         // Clear helpers property
         $this->helpers = [];
@@ -72,7 +78,7 @@ class ViewResolver
         foreach (glob(app_path() . '/' . $this->getViewHelpersDirectory() . '/*.php') as $helperFile) {
             if (file_exists($helperFile)) {
                 $customHelpers[] = $this->getClassFromFile($helperFile);
-                include_once($helperFile);
+                include_once $helperFile;
             }
         }
 

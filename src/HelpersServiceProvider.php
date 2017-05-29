@@ -3,15 +3,15 @@
 /**
  * This file is part of the Laravel Helpers package.
  *
- * @license MIT License https://mit-license.org
  * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * @license MIT License https://mit-license.org
  *
  */
 namespace Unckleg\Helpers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use Unckleg\Helpers\Factory\HelpersResolver;
+use Unckleg\Helpers\Factory\Factory;
 
 class HelpersServiceProvider extends ServiceProvider
 {
@@ -32,8 +32,8 @@ class HelpersServiceProvider extends ServiceProvider
             Config::set('helpers', include (__DIR__ . '/Config/helpers.php'));
         }
 
-        // Resolve view and action helpers if they are enabled through config
-        HelpersResolver::resolve();
+        // Resolve factory view/action helpers if they are enabled through config
+        Factory::resolve();
     }
 
     /**
@@ -43,8 +43,6 @@ class HelpersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands([
-
-        ]);
+        $this->commands([]);
     }
 }

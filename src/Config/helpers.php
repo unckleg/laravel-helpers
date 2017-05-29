@@ -27,9 +27,11 @@
     'package_helpers' => [
         'view'   => [
             Unckleg\Helpers\Factory\View\Collection\Javascripts::class,
-            Unckleg\Helpers\Factory\View\Collection\Stylesheets::class,
+            Unckleg\Helpers\Factory\View\Collection\Stylesheets::class
         ],
-        'action' => []
+        'action' => [
+            Unckleg\Helpers\Factory\Action\Collection\Json::class
+        ]
     ],
 
     /*
@@ -41,7 +43,7 @@
     | config.
     |
     */
-    'directories'     => [
+    'directories' => [
         'root'   => 'Helpers',
         'view'   => 'View',
         'action' => 'Action'

@@ -3,8 +3,8 @@
 /**
  * This file is part of the Laravel Helpers package.
  *
- * @license MIT License https://mit-license.org
  * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * @license MIT License https://mit-license.org
  *
  */
 namespace Unckleg\Helpers\Factory;
@@ -12,7 +12,7 @@ namespace Unckleg\Helpers\Factory;
 use Unckleg\Helpers\Factory\Action\ActionResolver;
 use Unckleg\Helpers\Factory\View\ViewResolver;
 
-class HelpersResolver
+class Factory
 {
     /**
      * To resolve or not to resolve
