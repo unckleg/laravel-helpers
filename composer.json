@@ -1,0 +1,23 @@
+{
+    "name": "unckleg/laravel-helpers",
+    "description": "Laravel helpers package lets you use and create custom view/action helpers.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "laravel view helpers", "laravel helpers", "laravel blade helpers", "laravel extension", "blade helpers"],
+    "homepage": "https://github.com/unckleg/laravel-helpers",
+    "authors": [
+        {
+            "name": "Djordje Stojiljkovic",
+            "email": "djordjestojilljkovic@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "laravel/framework": "5.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Unckleg\\Helpers\\": "src/"
+        }
+    }
+}
