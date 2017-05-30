@@ -1,10 +1,10 @@
 <?php
 
-/**
+/*
  * This file is part of the Laravel Helpers package.
  *
- * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
- * @license MIT License https://mit-license.org
+ * (c) Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * MIT License https://mit-license.org
  *
  */
 namespace Unckleg\Helpers;
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Unckleg\Helpers\Factory\Factory;
 
+/**
+ * Class HelpersServiceProvider
+ *
+ * @author Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ *
+ */
 class HelpersServiceProvider extends ServiceProvider
 {
 

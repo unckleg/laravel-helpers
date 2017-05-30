@@ -12,7 +12,7 @@
     */
     'resolve' => [
         'view'   => true,
-        'action' => false
+        'action' => true
     ],
 
     /*
@@ -44,9 +44,9 @@
     |
     */
     'directories' => [
-        'root'   => 'Helpers',
-        'view'   => 'View',
-        'action' => 'Action'
+        'root'    => 'Helpers',
+        'view'    => 'View',
+        'action'  => 'Action'
     ]
 
 ];

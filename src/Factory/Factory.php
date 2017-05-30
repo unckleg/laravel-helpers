@@ -1,10 +1,10 @@
 <?php
 
-/**
+/*
  * This file is part of the Laravel Helpers package.
  *
- * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
- * @license MIT License https://mit-license.org
+ * (c) Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * MIT License https://mit-license.org
  *
  */
 namespace Unckleg\Helpers\Factory;
@@ -12,6 +12,12 @@ namespace Unckleg\Helpers\Factory;
 use Unckleg\Helpers\Factory\Action\ActionResolver;
 use Unckleg\Helpers\Factory\View\ViewResolver;
 
+/**
+ * Class Factory
+ *
+ * @author Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ *
+ */
 class Factory
 {
     /**

@@ -1,16 +1,23 @@
 <?php
 
-/**
+/*
  * This file is part of the Laravel Helpers package.
  *
- * @author  Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
- * @license MIT License https://mit-license.org
+ * (c) Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ * MIT License https://mit-license.org
+ *
  */
 namespace Unckleg\Helpers\Factory\View;
 
 use View;
 use Illuminate\Support\Facades\Blade;
 
+/**
+ * Class ViewResolver
+ *
+ * @author Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>
+ *
+ */
 class ViewResolver
 {
 
@@ -53,7 +60,6 @@ class ViewResolver
             Blade::directive(
                 $classShortName.'::'.$helperMethod->getName(),
                 function ($expression) use ($helperMethod) {
-                
                     // Return stringified method calling
                     return $this->stringify($helperMethod, $expression);
                 }
