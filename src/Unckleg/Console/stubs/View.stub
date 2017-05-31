@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    public function helloWorld()
+    {
+        return 'Hello world';
+    }
+
+    public static function helloTo($people)
+    {
+        return implode(PHP_EOL, $people);
+    }
+}

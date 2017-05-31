@@ -11,6 +11,7 @@ namespace Unckleg\Helpers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Unckleg\Helpers\Console\HelpersCommand;
 use Unckleg\Helpers\Factory\Factory;
 
 /**
@@ -49,6 +50,8 @@ class HelpersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands([]);
+        $this->commands([
+            HelpersCommand::class
+        ]);
     }
 }

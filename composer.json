@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Unckleg\\Helpers\\": "src/"
+            "Unckleg\\Helpers\\": "src/Unckleg"
         }
     }
 }
