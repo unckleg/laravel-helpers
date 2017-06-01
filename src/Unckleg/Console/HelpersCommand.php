@@ -46,17 +46,21 @@ class HelpersCommand extends Command
         );
 
         if ($answer === true) {
-            $config     = app()->make('config');
-            $helpersDir = app_path()  . '/' . $config->get('helpers.directory', 'Helpers');
+            $config = $this->getConfig();
+            $helpersDir = app_path()  . '/' . $config['directories']['root'] .'/'. $config['directories']['view'];
             $helperPath = $helpersDir . '/' . ucfirst($helperName) . '.php';
+
+            // Check if Helper already exist
             if (file_exists($helperPath)) {
                 $this->error('Oops, Helper with name: ' . ucfirst($helperName) . ' already exist.');
                 exit();
             }
+
             // Check if directory exist if not create it
             if (!file_exists($helpersDir)) {
                 mkdir($helpersDir, 0777, true);
             }
+
             if ($this->isWritable($helpersDir) === true) {
                 // show some animated progress
                 $this->showProgress();
@@ -65,8 +69,8 @@ class HelpersCommand extends Command
                 fwrite(
                     $fp,
                     str_replace(
-                        ['{{ class }}', '{{ namespace }}'],
-                        [ucfirst($helperName), 'App\\'.ucfirst(config('helpers.directories')['view'])],
+                        ['{{ class }}', '{{ class_blade }}', '{{ namespace }}'],
+                        [ucfirst($helperName), lcfirst($helperName), $this->getViewHelpersNamespace()],
                         file_get_contents(__DIR__.'/stubs/View.stub')
                     )
                 );
@@ -74,6 +78,33 @@ class HelpersCommand extends Command
             }
         }
     }
+
+
+    /**
+     * getConfig returns helpers config.
+     * If local config is published then it 'll fetch array from there else from vendor directory.
+     *
+     * @return mixed
+     */
+    private function getConfig()
+    {
+        return config('helpers');
+    }
+
+    /**
+     * getViewHelpersNamspace returns namespace that is configured in app config.
+     */
+    private function getViewHelpersNamespace()
+    {
+        $config = config('helpers.directories');
+
+        // directories
+        $root   = $config['root'];
+        $view   = $config['view'];
+
+        return 'App\\' . $root . '\\' . $view;
+    }
+
     /**
      * isWritable method check if passed directory is writable.
      *

@@ -4,12 +4,25 @@ namespace {{ namespace }};
 
 class {{ class }}
 {
+    /**
+     *
+     * Blade calling: @{{ class_blade }}::helloWorld()
+     *
+     * @return string
+     */
     public function helloWorld()
     {
         return 'Hello world';
     }
 
-    public static function helloTo($people)
+    /**
+     *
+     * Blade calling: @{{ class_blade }}::helloTo($people)
+     *
+     * @param  $people
+     * @return string
+     */
+    public static function helloTo(array $people)
     {
         return implode(PHP_EOL, $people);
     }
