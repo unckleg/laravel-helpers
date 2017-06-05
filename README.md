@@ -38,25 +38,67 @@ Command will create directory and Helper for you.
 
 namespace App\Helpers;
 
-class Hello
+class Test
 {
-    public function sayHello()
+    /**
+     *
+     * Blade calling: @test::helloWorld()
+     *
+     * @return string
+     */
+    public function helloWorld()
     {
         return 'Hello world';
     }
-    
-    public function sayHelloToMany($arg, $arg2, $arg3) 
+
+    /**
+     *
+     * Blade calling: @test::helloTo(array $people)
+     *
+     * @param  array  $people
+     * @return string
+     */
+    public function helloTo(array $people)
     {
-        return 'Hello to ' . $arg . $arg2 . $arg3;
+        return implode(PHP_EOL, $people);
     }
+    
+    /**
+     * 
+     * Blade calling: @test::navigation()
+     *
+     * @return string   
+     */
+    public static function navigation() 
+    { 
+        $pages = App\Page::all();    
+    ?>
+        
+        <div class="navigation">
+            <ul> 
+                @foreach($pages as $page)
+                    <li> 
+                        <a href="{{ Url::slugify(app()->baseUrl($page->title)) }}"> 
+                            {{ $page->title }} 
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+    <?php }
 }
 ```
 - In blade 
 ```blade 
-@hello:sayHello()
+@test:helloWorld()
 // outputs: Hello world
-@hello::sayHelloToMany('People', ' and ', 'to everyone')
-// outputs: Hello to People and to everyone
+
+@test::helloTo(['One', 'Two', 'Three', 'Four', 'Five'])
+// outputs: One, Two, Three, Four, Five
+
+@test::navigation()
+// outputs: This will output whole html provided in navigation method
 ```
 
 #### Built-in helpers

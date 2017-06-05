@@ -198,10 +198,10 @@ class ViewResolver
 
         if ($helperMethod->isStatic()) {
             // Return static method calling as plain php
-            return "<?php $helperMethod->class::{$helperMethod->getName()}({$expression}); ?>";
+            return "<?php echo $helperMethod->class::{$helperMethod->getName()}({$expression}); ?>";
         }
 
         // Return normal instance and method calling as plain php
-        return "<?php (new $helperClassName)->{$helperMethodName}({$expression}); ?>";
+        return "<?php echo (new $helperClassName)->{$helperMethodName}({$expression}); ?>";
     }
 }

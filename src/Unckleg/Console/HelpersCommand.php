@@ -57,23 +57,21 @@ class HelpersCommand extends Command
             }
 
             // Check if directory exist if not create it
-            if (!file_exists($helpersDir)) {
+            if (!is_dir($helpersDir)) {
                 mkdir($helpersDir, 0777, true);
             }
 
             if ($this->isWritable($helpersDir) === true) {
                 // show some animated progress
                 $this->showProgress();
-                $fp = fopen($helperPath, "wb");
 
-                fwrite(
-                    $fp,
-                    str_replace(
-                        ['{{ class }}', '{{ class_blade }}', '{{ namespace }}'],
-                        [ucfirst($helperName), lcfirst($helperName), $this->getViewHelpersNamespace()],
-                        file_get_contents(__DIR__.'/stubs/View.stub')
-                    )
-                );
+                $fp = fopen($helperPath, "wb");
+                fwrite($fp, str_replace(
+                    ['{{ class }}', '{{ class_blade }}', '{{ namespace }}'],
+                    [ucfirst($helperName), lcfirst($helperName), $this->getViewHelpersNamespace()],
+                    file_get_contents(__DIR__.'/stubs/View.stub')
+                ));
+
                 $this->info('Helper class: ' . ucfirst($helperName) . ' created successfully. Happy coding!' );
             }
         }
