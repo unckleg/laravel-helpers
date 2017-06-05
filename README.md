@@ -60,7 +60,7 @@ class Test
      */
     public function helloTo(array $people)
     {
-        return implode(PHP_EOL, $people);
+        return implode(', ', $people);
     }
     
     /**
